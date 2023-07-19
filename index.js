@@ -17,11 +17,10 @@ const images = [
 const profile = document.querySelector('.profile');
 const posts = document.querySelector('.posts');
 const comments = document.querySelector('.comments');
-const viewComment = document.querySelector('.viewComment');
-console.log(viewComment)
-viewComment.addEventListener('click',()=>{
-    console.log('clicked')
-})
+
+
+
+// console.log(viewComment)
 
 // create a function that fetches the profile 
 
@@ -68,10 +67,6 @@ const fetchUserNames = async()=>{
  // 10  usernames for each post
 fetchUserNames();
  console.log(userNames)
-
-
-
-
 
 //Fetch Comments for the user's Post
 
@@ -131,10 +126,6 @@ const fetchPosts = async ()=>{
         const res1 = await fetch('https://jsonplaceholder.typicode.com/users/1')
         const user = await res1.json();
         let html = ''
-
-       
-        
-
         trimmedArray.map((data,index)=>{
         
 
@@ -161,11 +152,66 @@ const fetchPosts = async ()=>{
                 <span>500</span>
             </div>
         </div>
-        <button class='viewComment'>View Comment</button>
+        <button class=viewComment${index+1}>View Comment</button>
         </div>              
         </div> 
         </div>
         `;
+        setTimeout(()=>{
+            const viewComment1 = document.querySelector('.viewComment1');
+            const viewComment2 = document.querySelector('.viewComment2');
+            const viewComment3 = document.querySelector('.viewComment3');
+            const viewComment4 = document.querySelector('.viewComment4');
+            const viewComment5 = document.querySelector('.viewComment5');
+            const viewComment6 = document.querySelector('.viewComment6');
+            const viewComment7 = document.querySelector('.viewComment7');
+            const viewComment8 = document.querySelector('.viewComment8');
+            const viewComment9 = document.querySelector('.viewComment9');
+            const viewComment10 = document.querySelector('.viewComment10');
+                console.log(viewComment1)
+                console.log(data.id)
+            viewComment1.addEventListener('click',()=>{
+                fetchComments(1)
+                
+            })
+            viewComment2.addEventListener('click',()=>{
+                fetchComments(2)
+                
+            })
+            viewComment3.addEventListener('click',()=>{
+                fetchComments(3)
+                
+            })
+            viewComment4.addEventListener('click',()=>{
+                fetchComments(4)
+                
+            })
+            viewComment5.addEventListener('click',()=>{
+                fetchComments(5)
+                
+            })
+            viewComment6.addEventListener('click',()=>{
+                fetchComments(6)
+                
+            })
+            viewComment7.addEventListener('click',()=>{
+                fetchComments(7)
+                
+            })
+            viewComment8.addEventListener('click',()=>{
+                fetchComments(8)
+                
+            })
+            viewComment9.addEventListener('click',()=>{
+                fetchComments(9)
+                
+            })
+            viewComment10.addEventListener('click',()=>{
+                fetchComments(10)
+                
+            })
+        
+            },3000)
 
        return  posts.innerHTML = html;
        

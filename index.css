@@ -38,7 +38,7 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: blue;
+    background-color: #03045E;
     color: white;
     border-radius: 1vh;
     
@@ -62,7 +62,7 @@ body{
     gap: 1vh;
 }
 .userName{
-    color: blue;
+    color: #03045E;
     font-size: 20px;
     padding: 1vh 1vw;
 
@@ -133,6 +133,7 @@ body{
     gap: 3vh;
     justify-content: start;
     padding: 1vh 1vw;
+    background-color: rgb(3, 4, 94,0.3);
 
 }
 .actions{
@@ -141,17 +142,18 @@ body{
     height:5vh;
     display: flex;
     gap: 1vh;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
-.viewComment{
+button{
     margin-top: 2vh;
-    width:40vw;
+    width:20vw;
     height:5vh;
     outline: none;
+    border: none;
     border-radius: 10px;
-    background-color: transparent;
-    color: black;
+    background-color: #03045E;
+    color: white;
     cursor: pointer;
 
 }
@@ -207,9 +209,11 @@ body{
     display: flex;
     flex-direction: column;
     gap: 1vh;
-    border: 1px solid rgb(7, 57, 150);
+    border: 1px solid rgb(3, 4, 94 , 0.5);
     padding: 1vh 1vw;
     border-radius: 10px;
+    background-color: rgb(3, 4, 94 , 0.5);
+    color: white;
 
 }
 .commentName{
