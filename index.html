@@ -4,32 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
-    <title>Document</title>
-</head>
+    <title>Twitter Clone</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&family=Outfit:wght@400;700&family=Rubik:wght@300;400;500&display=swap" rel="stylesheet"></head>
 <body>
     <div class="container">
 
         <div class="header">
-            <div class="navBar">
-                <div class="title">Twitter Clone</div>
-                <div class="searchTab">
-                    <input placeholder="Search " type="text" class="search">
-                </div>
-            </div>
-            <div class="profile">
+            <nav>
+                <ul class="navbar">
+                  <li><a href="#">Twitter Clone</a></li>
+                  <li class="dropdown">
+                    <button href="#" class="search">Choose User</button>
+                    <ul class="dropdown-menu">
 
-            </div>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+              <div class="profile">
+
+              </div>
+              
         </div>
         <div class="post-section">
-            <div class="posts">
+            <div class="posts ">
 
 
             <!-- <button class='viewComment'>View Comment</button> -->
             </div>
 
-            <div class="comments">
 
-            </div>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="comments">
+
+      <!-- Add more comments here -->
+    </div>
+  </div>
+</div>
 
         </div> 
     </div>
