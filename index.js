@@ -12,7 +12,7 @@ const postImages =[]
 fetch(API_ENDPOINT)
     .then(response => response.json())
     .then(data => {
-        console.log(data.hits);
+        // console.log(data.hits);
         
         // Iterating over 'hits' (each 'hit' is an image)
         data.hits.forEach(hit => {
@@ -20,7 +20,7 @@ fetch(API_ENDPOINT)
             postImages.push(hit.previewURL);
         });
         
-        console.log(postImages);
+        // console.log(postImages);
     })
     .catch(error => console.error('Error:', error));
 
@@ -55,7 +55,7 @@ const fetchProfile = async (userId)=>{
 
         const res = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
         const data = await res.json();
-        console.log(images[userId-1])
+        // console.log(images[userId-1])
         let html = ''
         html += `
         <img class="profilePic" src=${images[userId-1]} alt="">
@@ -75,6 +75,15 @@ const fetchProfile = async (userId)=>{
 }
 // initializing the profile
 fetchProfile(1);
+// event deleagation for the dropdown
+dropDownMenu.addEventListener('click',async(e)=>{
+    if(e.target.classList.contains('user')){
+        const userId = e.target.parentElement.children[0].id
+        fetchProfile(userId)
+         fetchPosts(userId)
+    }
+}
+)
 
 //Fetch User Names for the posts
 let userNames = [];
@@ -86,83 +95,11 @@ const fetchUserNames = async()=>{
     html =''
     trimmedArray.map((user,index)=>{
         html += `
-        <li><a class=user${index+1} href="#">${user.name}</a></li>        
+        <li><a class="user" id="${user.id}" href="#">${user.name}</a></li>        
         `
         userNames.push(user.name)
     })
 
-        // I dont think this is the right way, I am still thinking of the best way to do this .
-        setTimeout(()=>{
-            const user1 = document.querySelector('.user1');
-            const user2 = document.querySelector('.user2');
-            const user3 = document.querySelector('.user3');
-            const user4 = document.querySelector('.user4');
-            const user5 = document.querySelector('.user5');
-            const user6 = document.querySelector('.user6');
-            const user7 = document.querySelector('.user7');
-            const user8 = document.querySelector('.user8');
-            const user9 = document.querySelector('.user9');
-      
-            user1.addEventListener('click',()=>{
-                fetchProfile(1)
-                fetchPosts(1)
-            })
-            user2.addEventListener('click',()=>{
-                fetchProfile(2)
-                fetchPosts(2)
-
-                
-            })
-            user3.addEventListener('click',()=>{
-                fetchProfile(3)
-                fetchPosts(3)
-
-                
-            })
-            user4.addEventListener('click',()=>{
-                fetchProfile(4)
-                fetchPosts(4)
-
-                
-            })
-            user5.addEventListener('click',()=>{
-                fetchProfile(5)
-                fetchPosts(5)
-
-                
-            })
-            user6.addEventListener('click',()=>{
-                fetchProfile(6)
-                fetchPosts(6)
-
-                
-            })
-            user7.addEventListener('click',()=>{
-                fetchProfile(7)
-                fetchPosts(7)
-
-                
-            })
-            user8.addEventListener('click',()=>{
-                fetchProfile(8)
-                fetchPosts(8)
-
-                
-            })
-            user9.addEventListener('click',()=>{
-                fetchProfile(9)
-                fetchPosts(9)
-
-                
-            })
-            user10.addEventListener('click',()=>{
-                fetchProfile(10)
-                fetchPosts(10)
-
-                
-            })
-        
-            },3000)
     dropDownMenu.innerHTML = html;
         return userNames;
 
@@ -191,10 +128,11 @@ const openModal =()=> {
 
 const fetchComments = async (postId)=>{
     try {
+        
 
         const res = await fetch(`https://jsonplaceholder.typicode.com/comments`)
         const data = await res.json();
-        const postComments = data.filter((comment)=>comment.postId === postId)
+        const postComments = data.filter((comment)=>comment.postId == postId)
         const trimmedArray = postComments.slice(0, 10);
 
 
@@ -228,7 +166,7 @@ function getRandomNumber(min, max) {
 
 const initialComment = async ()=>{
     try {
-        fetchComments(1)
+       await fetchComments(1)
 
     } catch (error) {
         console.log(error)   
@@ -245,7 +183,7 @@ const fetchPosts = async (userId)=>{
         const res = await fetch('https://jsonplaceholder.typicode.com/posts')
         const allData = await res.json();
         // I want to filter the all data posts using the userId and display that on the ui
-        const data = allData.filter((post)=>post.userId === userId)
+        const data = allData.filter((post)=>post.userId == userId)
 
 
         const trimmedArray = data.slice(0, 10);
@@ -263,7 +201,8 @@ const fetchPosts = async (userId)=>{
         <div class="postContainer">
         <img src=${postImages[getRandomNumber(0,10)]} alt="" class="postImg">
 
-        <div class="postDetails">
+        <div class="postDetails id=${data.id}}">
+            <div class="postTitle">${data.id}</div>
             <div class="postTitle">${data.title}</div>
             <div class="postBody">${data.body}</div>
             <div class="userName">${user.name}</div>
@@ -282,92 +221,17 @@ const fetchPosts = async (userId)=>{
                 <span>${200*index*data.id}</span>
             </div>
         </div>
-        <button class=viewComment${index+1}>View Comment</button>
+        <button class="viewComment">View Comment</button>
         </div>              
         </div> 
         </div>
         `;
 
-        // I dont think this is the right way but I am still thinking of the best way to do this .
-        setTimeout(()=>{
-            const viewComment1 = document.querySelector('.viewComment1');
-            const viewComment2 = document.querySelector('.viewComment2');
-            const viewComment3 = document.querySelector('.viewComment3');
-            const viewComment4 = document.querySelector('.viewComment4');
-            const viewComment5 = document.querySelector('.viewComment5');
-            const viewComment6 = document.querySelector('.viewComment6');
-            const viewComment7 = document.querySelector('.viewComment7');
-            const viewComment8 = document.querySelector('.viewComment8');
-            const viewComment9 = document.querySelector('.viewComment9');
-            const viewComment10 = document.querySelector('.viewComment10');
-            viewComment1.addEventListener('click',()=>{
-                fetchComments(1)
-                openModal()
-           
-                
-            })
-            viewComment2.addEventListener('click',()=>{
-                fetchComments(2)
-                openModal()
-
-           
-
-                
-            })
-            viewComment3.addEventListener('click',()=>{
-                fetchComments(3)
-                openModal()
-
-                
-            })
-            viewComment4.addEventListener('click',()=>{
-                fetchComments(4)
-                
-            })
-            viewComment5.addEventListener('click',()=>{
-                fetchComments(5)
-                openModal()
-
-                
-            })
-            viewComment6.addEventListener('click',()=>{
-                fetchComments(6)
-                openModal()
-
-                
-            })
-            viewComment7.addEventListener('click',()=>{
-                fetchComments(7)
-                openModal()
-
-                
-            })
-            viewComment8.addEventListener('click',()=>{
-                fetchComments(8)
-                openModal()
-
-                
-            })
-            viewComment9.addEventListener('click',()=>{
-                fetchComments(9)
-                openModal()
-
-                
-            })
-            viewComment10.addEventListener('click',()=>{
-                fetchComments(10)
-                openModal()
-
-                
-            })
         
-            },3000)
-
-       return  posts.innerHTML = html;
-       
-
-
+        
     })
+
+           return  posts.innerHTML = html;
 
         
     } catch (error) {
@@ -375,6 +239,22 @@ const fetchPosts = async (userId)=>{
     }
 }
 fetchPosts(1);
+
+
+    // Applying the concept event delegation to the parent element
+    
+    posts.addEventListener('click',async(e)=>{
+        console.log(e.target.classList)
+    
+        if(e.target.classList.contains('viewComment')){
+
+        const postId = e.target.parentElement.children[0].textContent;
+        fetchComments(postId);
+        openModal()
+        }
+        })        
+
+
 
 
 
